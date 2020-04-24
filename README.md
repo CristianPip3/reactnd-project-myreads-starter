@@ -1,47 +1,34 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+# MyReads
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+App that allows to organize books by bookshelf, which is divided into three categories, Read, Currently reading and I want to read, in addition to this it allows you to search for books by title and in this way I can add them to the three previous categories
 
-## TL;DR
+## Starting :rocket:
 
-To get started developing right away:
+These instructions will allow you to obtain a copy of the running project on your local machine for development and testing purposes.
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+See ** Deployment ** to learn how to deploy the project.
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+### Pre requirements 📋
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+These are the needs of the project in summary, for more information you can review the official documentation of the Framework, here it is about summarizing everything.
+
+_1- Node y Npm (Node dependency manager)_
+
+_2- React Js_
+
+## Important
+
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
 ## Backend Server
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+-   [`getAll`](#getall)
+-   [`update`](#update)
+-   [`search`](#search)
 
 ### `getAll`
 
@@ -51,8 +38,8 @@ Method Signature:
 getAll()
 ```
 
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
+-   Returns a Promise which resolves to a JSON object containing a collection of book objects.
+-   This collection represents the books currently in the bookshelves in your app.
 
 ### `update`
 
@@ -62,9 +49,9 @@ Method Signature:
 update(book, shelf)
 ```
 
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
+-   book: `<Object>` containing at minimum an `id` attribute
+-   shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
+-   Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
 ### `search`
 
@@ -74,16 +61,48 @@ Method Signature:
 search(query)
 ```
 
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+-   query: `<String>`
+-   Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
+-   These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
 
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+### Installation 🔧
 
-## Create React App
+A series of step-by-step examples that tells you what to do to have a development environment running.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Steps to execute the project:
+
+_1- Clone the project or download the ZIP file_
+
+_2- Run in the command console (Previously installed) _
+
+_Installation for mac_
+
+    brew install node
+    brew install watchman
+
+_3- After verifying that you have all the \*\*_ Prerequisites _\*\*.
+Open TWO terminals on the same path example_
+
+``
+$ pwd
+/home/linuxp/
+
+`_4- In one of the terminals execute the command: _`
+$ npm install
+
+``
+_After finishing the installation of all dependencies you can run_
+
+`$ npm start`
+
+-   [Node v12.16.0](https://nodejs.org/en/) - The web framework used
+-   [Npm 6.13.7](https://www.npmjs.com/) - Dependency handler
+-   [Rest Client](https://www.getpostman.com/) - Used to make Rest requests
+-   [Create React App](https://github.com/facebookincubator/create-react-app) This project was bootstrapped with (<https://github.com/facebookincubator/create-react-app>). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+    ## Autor :sunglasses:
+
+-   **Cristian Felipe Benavides** - _Developer_ - [CristianPip3](https://github.com/CristianPip3)
 
 ## Contributing
 

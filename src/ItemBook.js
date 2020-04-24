@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ComponentLoading from "./ComponentLoading";
+import noImage from "./images/no-cover-image.png";
 import PropTypes from "prop-types";
 
 /**
@@ -15,11 +16,17 @@ const renderAuthors = book => {
 };
 
 class ItemBook extends Component {
-
   static propTypes = {
     book: PropTypes.object.isRequired,
     changeShelf: PropTypes.func.isRequired,
     listBook: PropTypes.array
+  };
+  managmentImages = book => {
+    const coverImg =
+      book.imageLinks && book.imageLinks.thumbnail
+        ? book.imageLinks.thumbnail
+        : noImage;
+    return coverImg;
   };
 
   /**
@@ -56,7 +63,7 @@ class ItemBook extends Component {
                 style={{
                   width: 128,
                   height: 193,
-                  backgroundImage: `url(${book.data.imageLinks.smallThumbnail})`
+                  backgroundImage: `url(${this.managmentImages(book.data)})`
                 }}
                 alt={book.data.description}
               ></div>
@@ -77,7 +84,7 @@ class ItemBook extends Component {
             </div>
           </div>
           <div className="book-title">{book.title}</div>
-          {renderAuthors(book.data)}
+          {book.authors && renderAuthors(book.data)}
         </div>
       </li>
     );

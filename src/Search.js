@@ -18,9 +18,11 @@ class Search extends Component {
   };
   /**
    * @description  Search books from API adn update state
-   * @param {string} query - The query of searc
+   * @param {event} event - The query of searc
    */
-  updateQuery = query => {
+  updateQuery = event => {
+    const query = event.target.value;
+    this.setState({ query });
     if (query) {
       this.setState({loading: true});
       BooksAPI.search(query, 20)
@@ -38,21 +40,16 @@ class Search extends Component {
               })
             }));
           } else {
-            this.setState({searchErr: true, loading: false});
+            this.setState({newBooks: [],searchErr: true, loading: false});
           }
         })
         .catch(error => console.log("Problem in Search"));
-    }
+    }else{this.setState({newBooks: [],searchErr: false, loading: false});}
   };
   render() {
     const {query, loading, newBooks, searchErr} = this.state;
     const {booksList, onUpdateShelf} = this.props;
-    const showingBooks =
-      query === "" && newBooks
-        ? newBooks
-        : newBooks.filter(c =>
-            c.data.title.toLowerCase().includes(query.toLowerCase())
-          );
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -63,18 +60,19 @@ class Search extends Component {
           <div className="search-books-input-wrapper">
             <input
               type="text"
+              value={query}
               placeholder="Search by title or author"
-              onChange={event => this.updateQuery(event.target.value)}
+              onChange={this.updateQuery}
             />
           </div>
         </div>
 
         <div className="search-books-results">
-          {loading ? (
+          {loading && newBooks.length > 0 ?(
             ComponentLoading()
           ) : (
             <ListBooks
-              books={showingBooks}
+              books={newBooks}
               oldBooks={booksList}
               onUpdateShelf={onUpdateShelf}
             />
