@@ -3,18 +3,6 @@ import ComponentLoading from "./ComponentLoading";
 import noImage from "./images/no-cover-image.png";
 import PropTypes from "prop-types";
 
-/**
- * @description  Show a component list of author
- * @param {Object} book -The Object of the book with data of authors
- */
-const renderAuthors = book => {
-  return book.authors.map((autor, index) => (
-    <div key={index} className="book-authors">
-      {autor}
-    </div>
-  ));
-};
-
 class ItemBook extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
@@ -83,8 +71,12 @@ class ItemBook extends Component {
               </select>
             </div>
           </div>
-          <div className="book-title">{book.title}</div>
-          {book.authors && renderAuthors(book.data)}
+          <div className="book-title">{book.data.title}</div>
+          <div className="book-authors">
+            {Array.isArray(book.data.authors)
+              ? book.data.authors.join(", ")
+              : ""}
+          </div>
         </div>
       </li>
     );
